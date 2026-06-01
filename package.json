@@ -1,0 +1,56 @@
+{
+  "name": "@openwebninja/mcp-server",
+  "version": "0.1.0",
+  "description": "Official Model Context Protocol server for OpenWeb Ninja APIs: real-time web, local business, jobs, e-commerce, real estate, finance and more.",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://www.openwebninja.com",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "openwebninja",
+    "api",
+    "web-search",
+    "serp",
+    "scraping",
+    "jobs",
+    "local-business",
+    "ecommerce",
+    "real-estate",
+    "finance",
+    "claude",
+    "ai-agent"
+  ],
+  "bin": {
+    "openwebninja-mcp": "dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "sync": "tsx scripts/sync-openapi.ts",
+    "generate": "tsx scripts/generate.ts",
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "inspect": "npx @modelcontextprotocol/inspector tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "ajv": "^8.17.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.0.0",
+    "js-yaml": "^4.1.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
