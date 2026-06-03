@@ -4,3 +4,4 @@ openapi-cache/
 *.log
 .env
 .DS_Store
+eval/results/

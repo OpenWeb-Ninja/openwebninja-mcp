@@ -1,0 +1,51 @@
+[
+  { "tool": "realtime_web_search", "prompt": "Search the web for 'best project management software 2026' and summarize the top organic results with their links." },
+  { "tool": "realtime_news_data", "prompt": "Get the latest news headlines about artificial intelligence." },
+  { "tool": "real_time_news_search", "prompt": "Search the news for 'electric vehicles' and list a few recent articles with their sources." },
+  { "tool": "realtime_forums_search", "prompt": "Find online forum and Reddit discussions about mechanical keyboards." },
+  { "tool": "web_search_autocomplete", "prompt": "Get Google search autocomplete suggestions for the partial query 'how to learn'." },
+  { "tool": "realtime_image_search", "prompt": "Find images of the Golden Gate Bridge." },
+  { "tool": "reverse_image_search", "prompt": "Run a reverse image search on this image and tell me where it appears online and what it shows: https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg" },
+  { "tool": "realtime_lens_data", "prompt": "Use Google Lens to identify the landmark in this image: https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg" },
+  { "tool": "real_time_video_search", "prompt": "Find videos about how to make sourdough bread.", "note": "video upstream returned 503 in prior runs; may be transient." },
+  { "tool": "realtime_shorts_search", "prompt": "Find short-form videos (YouTube Shorts) about quick cooking tips." },
+  { "tool": "ai_overviews", "prompt": "Get Google's AI Overview for the query 'what is retrieval augmented generation'." },
+  { "tool": "google_ai_mode", "prompt": "Use Google AI Mode to answer 'what are the main benefits of solar energy'." },
+  { "tool": "social_links_search", "prompt": "Find the social media profile links (X/Twitter, LinkedIn, Instagram, etc.) for the website openai.com." },
+
+  { "tool": "local_business_data", "prompt": "Find coffee shops in Austin, TX and include their phone numbers.", "note": "test key may have an exhausted PAID quota on this API." },
+  { "tool": "yelp_business_data", "prompt": "Search Yelp for pizza restaurants in Chicago, IL." },
+  { "tool": "trustpilot_company_and_reviews", "prompt": "Get the Trustpilot profile and a few recent reviews for amazon.com." },
+  { "tool": "local_rank_tracker", "prompt": "Check the local Google search ranking results for the query 'plumber' in New York, NY." },
+  { "tool": "driving_directions", "prompt": "Get driving directions from New York, NY to Boston, MA, including distance and duration." },
+  { "tool": "waze", "prompt": "Get a Waze driving route from Los Angeles, CA to San Diego, CA." },
+  { "tool": "ev_charge_finder", "prompt": "Find EV charging stations near San Francisco (latitude 37.7749, longitude -122.4194)." },
+
+  { "tool": "jsearch", "prompt": "Find software engineer jobs in the United States." },
+  { "tool": "job_salary_data", "prompt": "What is the estimated salary for a data scientist in New York, NY?" },
+  { "tool": "realtime_glassdoor_data", "prompt": "Get the Glassdoor company overview for Google." },
+
+  { "tool": "realtime_amazon_data", "prompt": "What is the current price of the Sony WH-1000XM5 headphones on Amazon?" },
+  { "tool": "realtime_product_search", "prompt": "Search for wireless earbuds across shopping sites and show a few products with prices." },
+  { "tool": "real_time_walmart_data", "prompt": "Search Walmart for an air fryer and list a few products with prices." },
+  { "tool": "real_time_ebay_data", "prompt": "Search eBay for Nintendo Switch listings and show current prices." },
+  { "tool": "realtime_costco_data", "prompt": "Search Costco for paper towels." },
+  { "tool": "real_time_wayfair_data", "prompt": "Search Wayfair for an office chair.", "note": "Wayfair upstream hit a PerimeterX 502 block in prior runs; may be transient." },
+  { "tool": "realtime_books_data", "prompt": "Search for books about machine learning." },
+  { "tool": "play_store_apps", "prompt": "Search the Google Play Store for meditation apps." },
+
+  { "tool": "realtime_zillow_data", "prompt": "Find homes for sale in ZIP code 90210." },
+  { "tool": "real_time_redfin_data", "prompt": "Find homes for sale in Seattle, WA on Redfin." },
+
+  { "tool": "realtime_finance_data", "prompt": "What is Apple's (ticker AAPL) current stock price?" },
+  { "tool": "realtime_events_data", "prompt": "Find upcoming concerts or events in New York, NY." },
+
+  { "tool": "website_contacts_scraper", "prompt": "Extract contact details (emails, phone numbers, social links) from the website stripe.com." },
+  { "tool": "email_search", "prompt": "Find email addresses associated with the domain github.com." },
+
+  { "tool": "web_unblocker", "prompt": "Fetch the page content of https://example.com using the web unblocker and show me a snippet of the returned HTML or text." },
+
+  { "tool": "chatgpt", "prompt": "Ask ChatGPT: in one sentence, what is the capital of France?" },
+  { "tool": "gemini", "prompt": "Ask Gemini: in one sentence, explain photosynthesis." },
+  { "tool": "copilot", "prompt": "Ask Microsoft Copilot: in one sentence, who wrote Romeo and Juliet?", "note": "Copilot upstream returned 500 in prior runs; may be transient." }
+]

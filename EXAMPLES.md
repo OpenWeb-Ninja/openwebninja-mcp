@@ -103,7 +103,7 @@ If the agent reaches for an API the key isn't subscribed to, the tool returns a 
 - **Real estate:** realtime_zillow_data, real_time_redfin_data
 - **Finance & events:** realtime_finance_data, realtime_events_data
 - **Contact & enrichment:** website_contacts_scraper, email_search, social_links_search
-- **Visual:** realtime_image_search, realtime_lens_data, reverse_image_search, realtime_shorts_search, realtime_video_search
+- **Visual:** realtime_image_search, realtime_lens_data, reverse_image_search, realtime_shorts_search, real_time_video_search
 - **AI engines (GEO):** chatgpt, gemini, copilot
 - **Utility:** web_unblocker
 

@@ -2,11 +2,13 @@
 
 Official [Model Context Protocol](https://modelcontextprotocol.io) server for [OpenWeb Ninja](https://www.openwebninja.com) APIs. Gives any MCP-compatible AI agent (Claude, Cursor, Cline, and others) real-time access to web search, local business data, jobs, e-commerce, real estate, finance, news, and more, through a single connection.
 
-One tool per API product (41 tools), each exposing that API's operations. Schemas are generated directly from OpenWeb Ninja's OpenAPI specs, so the server always matches the live APIs.
+One tool per API product (41 tools), each exposing that API's operations, plus a `subscribe` tool for adding an API's free tier on demand — 42 tools in total. Schemas are generated directly from OpenWeb Ninja's OpenAPI specs, so the server always matches the live APIs.
 
 ## Setup
 
 You need an OpenWeb Ninja API key. Get one at [openwebninja.com](https://www.openwebninja.com).
+
+The server runs via `npx` — there's nothing to install globally. Pick your client below; `npx` fetches `@openwebninja/mcp-server` on demand.
 
 ### Claude Desktop
 
@@ -34,7 +36,7 @@ claude mcp add openwebninja -e OPENWEBNINJA_API_KEY=your-api-key -- npx -y @open
 
 Use the same `command` / `args` / `env` shape in the client's MCP config (`mcp.json` or equivalent).
 
-### From source (before npm publish)
+### From source (local development)
 
 ```bash
 git clone <repo> && cd openwebninja-mcp
@@ -81,9 +83,9 @@ Arguments are validated and type-coerced before the request is sent, and respons
 | `OPENWEBNINJA_API_KEY` | yes | Your OpenWeb Ninja API key (sent as `x-api-key`). |
 | `OPENWEBNINJA_BASE_URL` | no | Override the API host (defaults to `https://api.openwebninja.com`). For staging/testing. |
 
-## Available tools (41)
+## Available tools (42)
 
-**Search & discovery:** `realtime_web_search`, `realtime_news_data`, `real_time_news_search`, `realtime_forums_search`, `web_search_autocomplete`, `realtime_image_search`, `reverse_image_search`, `realtime_lens_data`, `realtime_video_search`, `realtime_shorts_search`, `ai_overviews`, `google_ai_mode`, `social_links_search`
+**Search & discovery:** `realtime_web_search`, `realtime_news_data`, `real_time_news_search`, `realtime_forums_search`, `web_search_autocomplete`, `realtime_image_search`, `reverse_image_search`, `realtime_lens_data`, `real_time_video_search`, `realtime_shorts_search`, `ai_overviews`, `google_ai_mode`, `social_links_search`
 
 **Local & maps:** `local_business_data`, `yelp_business_data`, `trustpilot_company_and_reviews`, `local_rank_tracker`, `driving_directions`, `waze`, `ev_charge_finder`
 
@@ -100,6 +102,8 @@ Arguments are validated and type-coerced before the request is sent, and respons
 **Utility:** `web_unblocker`
 
 **LLM relays:** `chatgpt`, `gemini`, `copilot`
+
+**Access:** `subscribe` (add an API's free tier on demand)
 
 ## Development
 

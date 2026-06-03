@@ -29,7 +29,7 @@ async function main() {
 
   // 1. tools/list
   const list = await client.listTools();
-  check("lists 41 tools", list.tools.length === 41, `got ${list.tools.length}`);
+  check("lists 42 tools", list.tools.length === 42, `got ${list.tools.length}`);
   const names = list.tools.map((t) => t.name);
   check(
     "key tools present",

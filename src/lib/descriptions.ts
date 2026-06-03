@@ -44,7 +44,7 @@ export const descriptions: Record<string, ApiHint> = {
     summary: "Google Lens on an image URL: visual matches, exact matches, object detection and OCR text extraction.",
     whenToUse: "Use for deep visual analysis of an image (objects, text, exact product matches). For simple reverse lookup use reverse_image_search.",
   },
-  realtime_video_search: {
+  real_time_video_search: {
     summary: "Search videos across YouTube, Vimeo, TikTok and the web for a query.",
     whenToUse: "Use for full-length videos. For short-form clips use realtime_shorts_search.",
   },
