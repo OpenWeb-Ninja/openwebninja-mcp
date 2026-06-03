@@ -2,6 +2,7 @@ import { OwnApiError } from "./errors.js";
 import type { OperationDef } from "./manifest.js";
 
 const DEFAULT_HOST = "https://api.openwebninja.com";
+const DEFAULT_PORTAL_API = "https://rpuo5v9cbe.execute-api.us-east-1.amazonaws.com/v1";
 
 function apiKey(): string {
   const key = process.env.OPENWEBNINJA_API_KEY;
@@ -89,6 +90,49 @@ export async function callOperation(
     if (parsed.request_id) out.request_id = parsed.request_id;
     if (parsed.cursor) out.cursor = parsed.cursor;
     return out;
+  }
+  return parsed;
+}
+
+function portalRoot(): string {
+  return (process.env.OPENWEBNINJA_PORTAL_API_URL || DEFAULT_PORTAL_API).replace(/\/$/, "");
+}
+
+/**
+ * Subscribe the current API key to an API's free (BASIC) tier via the dev-portal backend.
+ * Free tier only; the backend never touches Stripe and refuses to downgrade an active paid sub.
+ */
+export async function subscribeFree(apiId: string, planKey = "basic"): Promise<unknown> {
+  let res: Response;
+  try {
+    res = await fetch(`${portalRoot()}/self-subscribe-free`, {
+      method: "POST",
+      headers: {
+        "x-api-key": apiKey(),
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "User-Agent": "openwebninja-mcp",
+      },
+      body: JSON.stringify({ api_id: apiId, plan_key: planKey }),
+    });
+  } catch (e: any) {
+    throw new OwnApiError(`Network error calling /self-subscribe-free: ${e?.message || e}`);
+  }
+
+  const raw = await res.text();
+  let parsed: any;
+  try {
+    parsed = raw ? JSON.parse(raw) : undefined;
+  } catch {
+    parsed = raw;
+  }
+
+  if (!res.ok) {
+    const detail =
+      (parsed && (parsed.message || parsed.error?.message || parsed.error)) ||
+      (typeof parsed === "string" ? parsed.slice(0, 300) : "") ||
+      res.statusText;
+    throw new OwnApiError(`Subscribe failed (${res.status}): ${detail}`, res.status);
   }
   return parsed;
 }
