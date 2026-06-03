@@ -6,7 +6,11 @@ import { descriptions } from "./lib/descriptions.js";
 import { callOperation, subscribeFree } from "./lib/client.js";
 import { OwnApiError, toolError, toolResult } from "./lib/errors.js";
 
-const ajv = new Ajv({ coerceTypes: true, useDefaults: true, allErrors: true, strict: false });
+// useDefaults is OFF: these tools are passthrough proxies and several OpenAPI specs carry
+// empty-string defaults on optional params. Injecting them would send invalid values
+// (e.g. arrival_time="", max_hoa_fee="") that the upstream APIs reject. Omitted params are
+// left out so each API applies its own server-side default.
+const ajv = new Ajv({ coerceTypes: true, useDefaults: false, allErrors: true, strict: false });
 
 const apiById = new Map<string, ApiDef>(manifest.apis.map((a) => [a.id, a]));
 const validators = new Map<string, ValidateFunction>();
