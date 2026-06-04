@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "openwebninja": {
+      "command": "npx",
+      "args": ["-y", "@openwebninja/mcp-server"],
+      "env": {
+        "OPENWEBNINJA_API_KEY": "<your-openwebninja-api-key>"
+      }
+    }
+  }
+}
