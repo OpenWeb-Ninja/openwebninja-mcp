@@ -1,6 +1,7 @@
 {
   "name": "@openwebninja/mcp-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.OpenWeb-Ninja/openwebninja-mcp",
   "description": "Official Model Context Protocol server for OpenWeb Ninja APIs: real-time web, local business, jobs, e-commerce, real estate, finance and more.",
   "license": "MIT",
   "type": "module",
