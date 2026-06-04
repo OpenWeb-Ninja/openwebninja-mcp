@@ -1,0 +1,12 @@
+node_modules/
+src/
+test/
+eval/
+scripts/
+openapi-cache/
+_*.mjs
+package-lock.json
+tsconfig.json
+*.mcpb
+.git/
+.gitignore
