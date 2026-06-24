@@ -98,6 +98,16 @@ function portalRoot(): string {
   return (process.env.OPENWEBNINJA_PORTAL_API_URL || DEFAULT_PORTAL_API).replace(/\/$/, "");
 }
 
+// A few APIs are keyed in the dev-portal differently from their manifest id (which is the
+// api.openwebninja.com server slug). The /self-subscribe-free handler normalizes
+// real_time_ <-> realtime_, but cannot reach ids outside that pattern -- e.g. Redfin's free
+// plan lives under "redfin_api". Map those here so the free-tier subscribe targets the right
+// plan. Client-side alias only; it changes no dev-portal / Stripe / OpenMeter data.
+const SUBSCRIBE_ID_OVERRIDES: Record<string, string> = {
+  real_time_redfin_data: "redfin_api",
+  realtime_redfin_data: "redfin_api",
+};
+
 /**
  * Subscribe the current API key to an API's free (BASIC) tier via the dev-portal backend.
  * Free tier only; the backend never touches Stripe and refuses to downgrade an active paid sub.
@@ -113,7 +123,7 @@ export async function subscribeFree(apiId: string, planKey = "basic"): Promise<u
         Accept: "application/json",
         "User-Agent": "openwebninja-mcp",
       },
-      body: JSON.stringify({ api_id: apiId, plan_key: planKey }),
+      body: JSON.stringify({ api_id: SUBSCRIBE_ID_OVERRIDES[apiId] || apiId, plan_key: planKey }),
     });
   } catch (e: any) {
     throw new OwnApiError(`Network error calling /self-subscribe-free: ${e?.message || e}`);
