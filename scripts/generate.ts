@@ -23,7 +23,16 @@ const DEFAULT_HOST = "https://api.openwebninja.com";
 // realtime_product_search.yaml is the legacy v1 (paths suffixed `-v2`); the clean
 // v2 surface lives in realtime_product_search-v2.yaml. Both declare the same server
 // slug, so exposing both would collide on tool id. We ship v2 only.
-const SKIP_FILES = new Set(["realtime_product_search.yaml"]);
+//
+// Bundle products (e-commerce / real-estate / jobs) are intentionally excluded: they
+// only re-expose endpoints already covered by the individual API tools, so shipping
+// them would be redundant and would muddy tool selection (decision: 2026-06-22 sync).
+const SKIP_FILES = new Set([
+  "realtime_product_search.yaml",
+  "realtime_ecommerce_data.yaml",
+  "realtime_real_estate_data.yaml",
+  "realtime_jobs_data.yaml",
+]);
 
 const warnings: string[] = [];
 
