@@ -4370,6 +4370,7 @@ const manifest: any = {
             "query",
             "page",
             "country",
+            "delivery_country",
             "sort_by",
             "category_id",
             "category",
@@ -4428,6 +4429,10 @@ const manifest: any = {
                   "IE"
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
+              },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
               },
               "sort_by": {
                 "type": "string",
@@ -4496,7 +4501,6 @@ const manifest: any = {
               },
               "four_stars_and_up": {
                 "type": "boolean",
-                "example": "TRUE",
                 "description": "Return product listings with ratings of 4 stars & up."
               },
               "language": {
@@ -4527,6 +4531,7 @@ const manifest: any = {
             "category_id",
             "page",
             "country",
+            "delivery_country",
             "sort_by",
             "min_price",
             "max_price",
@@ -4583,6 +4588,10 @@ const manifest: any = {
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
               },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
+              },
               "sort_by": {
                 "type": "string",
                 "enum": [
@@ -4637,7 +4646,6 @@ const manifest: any = {
               },
               "four_stars_and_up": {
                 "type": "boolean",
-                "example": "TRUE",
                 "description": "Return product listings with ratings of 4 stars & up."
               },
               "language": {
@@ -4662,11 +4670,12 @@ const manifest: any = {
           "method": "GET",
           "path": "/product-details",
           "summary": "Product Details",
-          "description": "Get extensive Amazon product details and information available on the Amazon product page by asin, including title, price data, ratings data, photos, product details (brand, weight, package size, model, etc.) product variations (colors, sizes, flavors, etc), and many other data points.  \n  Here's an example product page: [https://www.amazon.com/dp/B0CMZFCQ6D](https://www.amazon.com/dp/B0CMZFCQ6D).",
+          "description": "Get extensive Amazon product details and information available on the Amazon product page by asin, including title, price data, ratings data, photos, product details (brand, weight, package size, model, etc.) product variations (colors, sizes, flavors, etc), best sellers rank, review insights, buy box and FBA details, and many other data points.  \n  Here's an example product page: [https://www.amazon.com/dp/B0CMZFCQ6D](https://www.amazon.com/dp/B0CMZFCQ6D).  \n    \n  **Billing:** each ASIN is billed as a separate request, so a batch of 10 ASINs counts as 10 requests against the plan quota.",
           "pathParams": [],
           "queryParams": [
             "asin",
             "country",
+            "delivery_country",
             "more_info_query",
             "language",
             "fields"
@@ -4677,7 +4686,7 @@ const manifest: any = {
             "properties": {
               "asin": {
                 "type": "string",
-                "description": "Product ASIN for which to get details.  \n  Supports batching of up to 10 ASINs in a single request, separated by comma.  \n  \n  **Note:** each ASIN in a batch request is counted as a single request against the plan quota."
+                "description": "Product ASIN for which to get details.  \n  Supports batching of up to 10 ASINs in a single request, separated by comma.  \n  \n  **Billing:** each ASIN is billed as a separate request, so a batch of 10 ASINs counts as 10 requests against the plan quota."
               },
               "country": {
                 "type": "string",
@@ -4709,6 +4718,10 @@ const manifest: any = {
                   "IE"
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
+              },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
               },
               "more_info_query": {
                 "type": "string",
@@ -4987,11 +5000,12 @@ const manifest: any = {
           "method": "GET",
           "path": "/product-offers",
           "summary": "Product Offers",
-          "description": "Get all Amazon product details as available via the Product Details endpoint with an additional offers array containing product offers (The first offer in the array is the pinned offer returned by the Search endpoint).  \n  Supports pagination using the page and limit parameters.",
+          "description": "Get all Amazon product details as available via the Product Details endpoint with an additional offers array containing product offers (The first offer in the array is the pinned offer returned by the Search endpoint).  \n  Supports pagination using the page and limit parameters.  \n    \n  **Billing:** each ASIN is billed as a separate request, so a batch of 10 ASINs counts as 10 requests against the plan quota.",
           "pathParams": [],
           "queryParams": [
             "asin",
             "country",
+            "delivery_country",
             "product_condition",
             "delivery",
             "limit",
@@ -5005,7 +5019,7 @@ const manifest: any = {
             "properties": {
               "asin": {
                 "type": "string",
-                "description": "Product ASIN for which to get offers.  \n  Supports batching of up to 10 ASINs in a single request, separated by comma.  \n  \n  **Note:** each ASIN in a batch request is counted as a single request against the plan quota."
+                "description": "Product ASIN for which to get offers.  \n  Supports batching of up to 10 ASINs in a single request, separated by comma.  \n  \n  **Billing:** each ASIN is billed as a separate request, so a batch of 10 ASINs counts as 10 requests against the plan quota."
               },
               "country": {
                 "type": "string",
@@ -5038,6 +5052,10 @@ const manifest: any = {
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
               },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
+              },
               "product_condition": {
                 "type": "string",
                 "default": "NEW, USED_LIKE_NEW, USED_VERY_GOOD, USED_GOOD, USED_ACCEPTABLE",
@@ -5048,10 +5066,6 @@ const manifest: any = {
                 "enum": [
                   "PRIME_ELIGIBLE",
                   "FREE_DELIVERY"
-                ],
-                "examples": [
-                  "FREE_DELIVERY",
-                  "PRIME_ELIGIBLE,FREE_DELIVERY"
                 ],
                 "description": "Find products with specific delivery option, specified as a comma delimited list of the following values:"
               },
@@ -5136,7 +5150,6 @@ const manifest: any = {
               },
               "fields": {
                 "type": "string",
-                "example": "seller_link,phone,business_name,rating",
                 "description": "A comma separated list of seller profile fields to include in the response (field projection).  \n  By default all fields are returned."
               }
             },
@@ -5224,7 +5237,6 @@ const manifest: any = {
               },
               "fields": {
                 "type": "string",
-                "example": "review_star_rating,review_date",
                 "description": "A comma separated list of seller review fields to include in the response (field projection).  \n  By default all fields are returned."
               }
             },
@@ -5242,6 +5254,7 @@ const manifest: any = {
           "queryParams": [
             "seller_id",
             "country",
+            "delivery_country",
             "page",
             "sort_by",
             "language",
@@ -5286,6 +5299,10 @@ const manifest: any = {
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
               },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
+              },
               "page": {
                 "type": "integer",
                 "default": 1,
@@ -5310,7 +5327,6 @@ const manifest: any = {
               },
               "fields": {
                 "type": "string",
-                "example": "product_price,product_url,is_prime",
                 "description": "A comma separated list of seller product fields to include in the response (field projection).  \n  By default all fields are returned."
               }
             },
@@ -5330,6 +5346,7 @@ const manifest: any = {
             "type",
             "page",
             "country",
+            "delivery_country",
             "language",
             "fields"
           ],
@@ -5389,13 +5406,16 @@ const manifest: any = {
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
               },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
+              },
               "language": {
                 "type": "string",
                 "description": "The language of the results. In case not specified, results will be returned in the default domain language.  \n\n  **Supported languages per country:**  \n  `US`: en_US, es_US  \n  `AU`: en_AU  \n  `BR`: pt_BR  \n  `CA`: en_CA, fr_CA  \n  `FR`: fr_FR, en_GB  \n  `DE`: de_DE, en_GB, cs_CZ, nl_NL, pl_PL, tr_TR, da_DK  \n  `IN`: en_IN, hi_IN, ta_IN, te_IN, kn_IN, ml_IN, bn_IN, mr_IN  \n  `IT`: it_IT, en_GB  \n  `MX`: es_MX  \n  `NL`: nl_NL, en_GB  \n  `SG`: en_SG  \n  `ES`: es_ES, pt_PT, en_GB  \n  `TR`: tr_TR  \n  `AE`: en_AE, ar_AE  \n  `GB`: en_GB  \n  `JP`: ja_JP, en_US, zh_CN  \n  `SA`: ar_AE, en_AE  \n  `PL`: pl_PL  \n  `SE`: sv_SE, en_GB  \n  `BE`: fr_BE, nl_BE, en_GB  \n  `EG`: ar_AE, en_AE  \n  `ZA`: en_ZA  \n  `IE`: en_IE   "
               },
               "fields": {
                 "type": "string",
-                "example": "product_title,product_url,product_photo",
                 "description": "A comma separated list of product fields to include in the response (field projection).  \n  By default all fields are returned."
               }
             },
@@ -5412,6 +5432,7 @@ const manifest: any = {
           "pathParams": [],
           "queryParams": [
             "country",
+            "delivery_country",
             "offset",
             "categories",
             "min_product_star_rating",
@@ -5458,6 +5479,10 @@ const manifest: any = {
                   "IE"
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
+              },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
               },
               "offset": {
                 "type": "string",
@@ -5527,7 +5552,6 @@ const manifest: any = {
               },
               "fields": {
                 "type": "string",
-                "example": "deal_type,deal_title,deal_ends_at,savings_amount",
                 "description": "A comma separated list of deal fields to include in the response (field projection).  \n  By default all fields are returned."
               }
             }
@@ -5542,6 +5566,7 @@ const manifest: any = {
           "queryParams": [
             "deal_id",
             "country",
+            "delivery_country",
             "sort_by",
             "page",
             "language",
@@ -5586,6 +5611,10 @@ const manifest: any = {
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
               },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
+              },
               "sort_by": {
                 "type": "string",
                 "enum": [
@@ -5610,7 +5639,6 @@ const manifest: any = {
               },
               "fields": {
                 "type": "string",
-                "example": "product_title,deal_price,deal_badge",
                 "description": "A comma separated list of deal product fields to include in the response (field projection).  \n  By default all fields are returned."
               }
             },
@@ -5628,6 +5656,7 @@ const manifest: any = {
           "queryParams": [
             "promo_code",
             "country",
+            "delivery_country",
             "language"
           ],
           "bodyParams": [],
@@ -5668,6 +5697,10 @@ const manifest: any = {
                   "IE"
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
+              },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
               },
               "language": {
                 "type": "string",
@@ -5732,7 +5765,6 @@ const manifest: any = {
               },
               "fields": {
                 "type": "string",
-                "example": "name,profile_link,posts_count,facebook_url",
                 "description": "A comma separated list of influencer profile fields to include in the response (field projection).   \n  By default all fields are returned."
               },
               "language": {
@@ -5832,7 +5864,6 @@ const manifest: any = {
               },
               "fields": {
                 "type": "string",
-                "example": "post_url,post_title,is_pinned,video_duration",
                 "description": "A comma separated list of influencer post fields to include in the response (field projection).  \n  By default all fields are returned."
               }
             },
@@ -6045,6 +6076,7 @@ const manifest: any = {
           "queryParams": [
             "url",
             "country",
+            "delivery_country",
             "language",
             "cookie",
             "return_html"
@@ -6087,6 +6119,10 @@ const manifest: any = {
                   "IE"
                 ],
                 "description": "Sets the Amazon domain, marketplace country, language and currency."
+              },
+              "delivery_country": {
+                "type": "string",
+                "description": "Delivery destination country (ISO 3166-1 alpha-2 code, e.g. `NL`). When set, delivery dates, shipping costs, availability and offers reflect delivery to this country instead of the marketplace's domestic delivery. Defaults to the marketplace country.  \n  Only specific `country` / `delivery_country` combinations are supported. Currently supported: `country` = `DE`, `FR`, `IT` or `ES` with `delivery_country` = `NL`.  \n  Other combinations return a 400 error. If you need another combination, contact us at support@openwebninja.com and we will look into adding it."
               },
               "language": {
                 "type": "string",
