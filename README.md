@@ -2,7 +2,7 @@
 
 Official [Model Context Protocol](https://modelcontextprotocol.io) server for [OpenWeb Ninja](https://www.openwebninja.com) APIs. Gives any MCP-compatible AI agent (Claude, Cursor, Cline, and others) real-time access to web search, local business data, jobs, e-commerce, real estate, finance, news, and more, through a single connection.
 
-One tool per API product (41 tools), each exposing that API's operations, plus a `subscribe` tool for adding an API's free tier on demand — 42 tools in total. Schemas are generated directly from OpenWeb Ninja's OpenAPI specs, so the server always matches the live APIs.
+One tool per API product (50 tools), each exposing that API's operations, plus a `subscribe` tool for adding an API's free tier on demand — 51 tools in total. Schemas are generated directly from OpenWeb Ninja's OpenAPI specs, so the server always matches the live APIs.
 
 ## Setup
 
@@ -83,15 +83,15 @@ Arguments are validated and type-coerced before the request is sent, and respons
 | `OPENWEBNINJA_API_KEY` | yes | Your OpenWeb Ninja API key (sent as `x-api-key`). |
 | `OPENWEBNINJA_BASE_URL` | no | Override the API host (defaults to `https://api.openwebninja.com`). For staging/testing. |
 
-## Available tools (42)
+## Available tools (51)
 
-**Search & discovery:** `realtime_web_search`, `realtime_news_data`, `real_time_news_search`, `realtime_forums_search`, `web_search_autocomplete`, `realtime_image_search`, `reverse_image_search`, `realtime_lens_data`, `real_time_video_search`, `realtime_shorts_search`, `ai_overviews`, `google_ai_mode`, `social_links_search`
+**Search & discovery:** `realtime_web_search`, `realtime_bing_search_data`, `realtime_news_data`, `real_time_news_search`, `realtime_forums_search`, `web_search_autocomplete`, `realtime_image_search`, `reverse_image_search`, `realtime_lens_data`, `real_time_video_search`, `realtime_shorts_search`, `ai_overviews`, `google_ai_mode`, `social_links_search`
 
-**Local & maps:** `local_business_data`, `yelp_business_data`, `trustpilot_company_and_reviews`, `local_rank_tracker`, `driving_directions`, `waze`, `ev_charge_finder`
+**Local & maps:** `local_business_data`, `local_business_database`, `yelp_business_data`, `trustpilot_company_and_reviews`, `local_rank_tracker`, `driving_directions`, `waze`, `google_maps_traffic_alerts`, `ev_charge_finder`
 
-**Jobs & companies:** `jsearch`, `job_salary_data`, `realtime_glassdoor_data`
+**Jobs & companies:** `jsearch`, `realtime_linkedin_data`, `realtime_indeed_data`, `realtime_ziprecruiter_data`, `realtime_monster_data`, `realtime_bing_jobs_data`, `job_salary_data`, `realtime_glassdoor_data`
 
-**Commerce & product:** `realtime_amazon_data`, `realtime_product_search`, `real_time_walmart_data`, `real_time_ebay_data`, `realtime_costco_data`, `real_time_wayfair_data`, `realtime_books_data`, `play_store_apps`
+**Commerce & product:** `realtime_amazon_data`, `realtime_product_search`, `real_time_walmart_data`, `real_time_ebay_data`, `realtime_costco_data`, `real_time_wayfair_data`, `realtime_homedepot_data`, `realtime_books_data`, `play_store_apps`
 
 **Real estate:** `realtime_zillow_data`, `real_time_redfin_data`
 

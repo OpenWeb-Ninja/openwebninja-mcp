@@ -15,7 +15,12 @@ export const descriptions: Record<string, ApiHint> = {
     summary:
       "Real-time Google web search (SERP). Organic results, knowledge panels, AI Overviews and AI Mode answers for any query.",
     whenToUse:
-      "Use for general web/Google searches. For news specifically use realtime_news_data; for autocomplete suggestions use web_search_autocomplete.",
+      "Use for general web/Google searches. For news specifically use realtime_news_data; for autocomplete suggestions use web_search_autocomplete; for Bing results use realtime_bing_search_data.",
+  },
+  realtime_bing_search_data: {
+    summary:
+      "Microsoft Bing search results: web, news, images, videos, shopping (with full product details and every store's offer) and maps places.",
+    whenToUse: "Use when Bing results are wanted. For Google results use realtime_web_search and the other Google tools.",
   },
   realtime_news_data: {
     summary:
@@ -66,7 +71,13 @@ export const descriptions: Record<string, ApiHint> = {
     summary:
       "Google Maps business and place data: search businesses, search by area/coordinates/nearby, plus full details, reviews, photos, posts, autocomplete and reverse geocoding. Includes contact info where available.",
     whenToUse:
-      "The primary tool for local businesses and places (Google Maps source). For Yelp use yelp_business_data; for Trustpilot reviews use trustpilot_company_and_reviews.",
+      "The primary tool for live local business and place lookups (Google Maps source). To build a dataset of every business matching a query or area, use local_business_database. For Yelp use yelp_business_data; for Trustpilot reviews use trustpilot_company_and_reviews.",
+  },
+  local_business_database: {
+    summary:
+      "Searchable database of Google Maps business listings worldwide, refreshed every 30 days: query by name, category, address, city, ZIP, state, country or phone, or search inside a bounding box or radius, then get full business details, reviews and photos.",
+    whenToUse:
+      "Use to build business datasets and lead lists: it returns every listing matching the filters, cost-effectively. For a live, up-to-the-minute Google Maps lookup use local_business_data.",
   },
   yelp_business_data: {
     summary: "Yelp business search, business details, and Yelp reviews.",
@@ -84,6 +95,10 @@ export const descriptions: Record<string, ApiHint> = {
   waze: {
     summary: "Waze data: traffic alerts and jams, driving directions, venue lookup, and place autocomplete.",
   },
+  google_maps_traffic_alerts: {
+    summary: "Live Google Maps traffic incidents (accidents, construction, road closures, slowdowns) with type and coordinates inside a map area.",
+    whenToUse: "For Waze driver-reported alerts, jams and police reports use waze.",
+  },
   ev_charge_finder: {
     summary: "Find EV charging stations by location name or by coordinates, with connector and availability details.",
   },
@@ -92,7 +107,28 @@ export const descriptions: Record<string, ApiHint> = {
   jsearch: {
     summary:
       "Job search aggregated from Google for Jobs (LinkedIn, Indeed, Glassdoor and more): search jobs, job details, and estimated salaries.",
-    whenToUse: "Use to find job postings. For salary data only use job_salary_data; for company reviews/ratings use realtime_glassdoor_data.",
+    whenToUse:
+      "Use to find job postings across all job sites. For one job site use realtime_linkedin_data, realtime_indeed_data, realtime_ziprecruiter_data, realtime_monster_data or realtime_bing_jobs_data. For salary data only use job_salary_data; for company reviews/ratings use realtime_glassdoor_data.",
+  },
+  realtime_linkedin_data: {
+    summary: "LinkedIn job postings: job search with filters, every open job at one or more companies, and full job details.",
+    whenToUse: "Use for LinkedIn jobs specifically. For jobs across all sites use jsearch.",
+  },
+  realtime_indeed_data: {
+    summary: "Indeed jobs: job search with filters, full job details for up to 20 jobs per call, and a company's employee reviews and ratings.",
+    whenToUse: "Use for Indeed jobs specifically. For jobs across all sites use jsearch.",
+  },
+  realtime_ziprecruiter_data: {
+    summary: "ZipRecruiter jobs (United States and Canada): job search with filters, full job details, and ZipRecruiter's salary estimates for a job title.",
+    whenToUse: "Use for ZipRecruiter jobs specifically. For jobs across all sites use jsearch.",
+  },
+  realtime_monster_data: {
+    summary: "Monster jobs: job search with filters, full job details, and every open job at one or more employers.",
+    whenToUse: "Use for Monster jobs specifically. For jobs across all sites use jsearch.",
+  },
+  realtime_bing_jobs_data: {
+    summary: "Bing Jobs search across public job sites (LinkedIn, ZipRecruiter, Monster and others), plus full job details.",
+    whenToUse: "Use for Bing's jobs vertical. For Google for Jobs results use jsearch.",
   },
   job_salary_data: {
     summary: "Estimated salary ranges for a job title and location, and company-specific job salaries.",
@@ -120,6 +156,9 @@ export const descriptions: Record<string, ApiHint> = {
   },
   realtime_costco_data: {
     summary: "Costco product search and product details.",
+  },
+  realtime_homedepot_data: {
+    summary: "Home Depot product search, products by category, product details, item lookup by SKU or model number, and product reviews.",
   },
   real_time_wayfair_data: {
     summary: "Wayfair product search, product details and reviews (furniture and home goods).",

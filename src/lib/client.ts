@@ -106,6 +106,7 @@ function portalRoot(): string {
 const SUBSCRIBE_ID_OVERRIDES: Record<string, string> = {
   real_time_redfin_data: "redfin_api",
   realtime_redfin_data: "redfin_api",
+  local_business_database: "near_realtime_business_data",
 };
 
 /**

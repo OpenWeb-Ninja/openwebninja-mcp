@@ -1,6 +1,6 @@
 # OpenWeb Ninja MCP — Capabilities & Example Prompts
 
-One connection gives any MCP-compatible AI agent (Claude Desktop/Code, Cursor, Cline, Windsurf, and others) live access to **all 41 OpenWeb Ninja APIs as tools**. The user adds the server once with their API key, then just asks in plain English. The agent picks the right API, calls it, and answers. It can also **chain several APIs in one task** and **self-subscribe** to an API's free tier on demand.
+One connection gives any MCP-compatible AI agent (Claude Desktop/Code, Cursor, Cline, Windsurf, and others) live access to **all 50 OpenWeb Ninja APIs as tools**. The user adds the server once with their API key, then just asks in plain English. The agent picks the right API, calls it, and answers. It can also **chain several APIs in one task** and **self-subscribe** to an API's free tier on demand.
 
 All outputs below are from real calls against the live server.
 
@@ -94,12 +94,12 @@ If the agent reaches for an API the key isn't subscribed to, the tool returns a 
 
 ---
 
-## Full catalog (41 tools)
+## Full catalog (50 tools)
 
-- **Search & SERP:** realtime_web_search, web_search_autocomplete, ai_overviews, google_ai_mode, realtime_news_data, real_time_news_search, realtime_forums_search
-- **Local & maps:** local_business_data, yelp_business_data, trustpilot_company_and_reviews, local_rank_tracker, driving_directions, waze, ev_charge_finder
-- **Jobs & companies:** jsearch, job_salary_data, realtime_glassdoor_data
-- **Commerce & product:** realtime_amazon_data, realtime_product_search, real_time_walmart_data, real_time_ebay_data, realtime_costco_data, real_time_wayfair_data, realtime_books_data, play_store_apps
+- **Search & SERP:** realtime_web_search, realtime_bing_search_data, web_search_autocomplete, ai_overviews, google_ai_mode, realtime_news_data, real_time_news_search, realtime_forums_search
+- **Local & maps:** local_business_data, local_business_database, yelp_business_data, trustpilot_company_and_reviews, local_rank_tracker, driving_directions, waze, google_maps_traffic_alerts, ev_charge_finder
+- **Jobs & companies:** jsearch, realtime_linkedin_data, realtime_indeed_data, realtime_ziprecruiter_data, realtime_monster_data, realtime_bing_jobs_data, job_salary_data, realtime_glassdoor_data
+- **Commerce & product:** realtime_amazon_data, realtime_product_search, real_time_walmart_data, real_time_ebay_data, realtime_costco_data, real_time_wayfair_data, realtime_homedepot_data, realtime_books_data, play_store_apps
 - **Real estate:** realtime_zillow_data, real_time_redfin_data
 - **Finance & events:** realtime_finance_data, realtime_events_data
 - **Contact & enrichment:** website_contacts_scraper, email_search, social_links_search
@@ -107,4 +107,4 @@ If the agent reaches for an API the key isn't subscribed to, the tool returns a 
 - **AI engines (GEO):** chatgpt, gemini, copilot
 - **Utility:** web_unblocker
 
-*Coverage tested: 37/41 returned live data end-to-end; the rest were transient upstream blips unrelated to the MCP.*
+*Coverage tested (2026-10-14): every tool reached its API; 41/50 returned live data end-to-end, 6 need a real id or argument to return data, and 3 hit transient upstream errors unrelated to the MCP.*

@@ -20,18 +20,28 @@ const OUT = path.join(OUT_DIR, "manifest.ts");
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch"];
 const DEFAULT_HOST = "https://api.openwebninja.com";
 
-// realtime_product_search.yaml is the legacy v1 (paths suffixed `-v2`); the clean
-// v2 surface lives in realtime_product_search-v2.yaml. Both declare the same server
-// slug, so exposing both would collide on tool id. We ship v2 only.
+// Superseded v1 specs: realtime_product_search.yaml (paths suffixed `-v2`) and
+// realtime_web_search.yaml. Their v2 surface lives in the `-v2.yaml` file, which takes
+// the same tool id (see toolId), so we ship v2 only.
 //
-// Bundle products (e-commerce / real-estate / jobs) are intentionally excluded: they
-// only re-expose endpoints already covered by the individual API tools, so shipping
-// them would be redundant and would muddy tool selection (decision: 2026-06-22 sync).
+// Bundle products (e-commerce / real-estate / jobs / SERP / AI answers / local & maps)
+// are intentionally excluded: they only re-expose endpoints already covered by the
+// individual API tools, so shipping them would be redundant and would muddy tool
+// selection (decision: 2026-06-22 sync).
+//
+// company_data.yaml is published to the same S3 prefix by another pipeline but is not
+// a product on the portal, so it gets no tool.
 const SKIP_FILES = new Set([
   "realtime_product_search.yaml",
+  "realtime_web_search.yaml",
   "realtime_ecommerce_data.yaml",
   "realtime_real_estate_data.yaml",
   "realtime_jobs_data.yaml",
+  "realtime_serp_data.yaml",
+  "realtime_serp_data-v2.yaml",
+  "ai_answers.yaml",
+  "realtime_local_and_maps_data.yaml",
+  "company_data.yaml",
 ]);
 
 const warnings: string[] = [];
@@ -164,7 +174,9 @@ function main() {
       basePath = serverUrl.replace(DEFAULT_HOST, "");
     }
     const slug = basePath.replace(/^\//, "");
-    const id = slug.replace(/-/g, "_");
+    // Tool ids must match ^[a-zA-Z0-9_-]+$, so a versioned slug ("realtime-web-search/v2")
+    // keeps the API's own id and the version stays in basePath for the calls.
+    const id = slug.split("/")[0].replace(/-/g, "_");
 
     const operations: AnyObj = {};
     for (const [p, methodsRaw] of Object.entries(doc.paths)) {
