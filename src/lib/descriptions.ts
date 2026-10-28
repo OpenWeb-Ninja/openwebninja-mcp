@@ -75,7 +75,7 @@ export const descriptions: Record<string, ApiHint> = {
   },
   local_business_database: {
     summary:
-      "Searchable database of Google Maps business listings worldwide, refreshed every 30 days: query by name, category, address, city, ZIP, state, country or phone, or search inside a bounding box or radius, then get full business details, reviews and photos.",
+      "Searchable database of Google Maps business listings worldwide, refreshed every 30 days: query by name, category, address, city, ZIP, state, country or phone, or search inside a bounding box or radius (full business records with extended_details), plus a business's reviews and photos.",
     whenToUse:
       "Use to build business datasets and lead lists: it returns every listing matching the filters, cost-effectively. For a live, up-to-the-minute Google Maps lookup use local_business_data.",
   },
@@ -141,7 +141,7 @@ export const descriptions: Record<string, ApiHint> = {
   realtime_amazon_data: {
     summary:
       "Amazon product data: search, products by category, product details/offers/reviews, best sellers, deals, seller and influencer data, ASIN-to-GTIN and more.",
-    whenToUse: "Use for Amazon specifically. For multi-retailer Google Shopping use realtime_product_search; for Walmart/Costco/Wayfair/eBay use their dedicated tools.",
+    whenToUse: "Use for Amazon specifically. For multi-retailer Google Shopping use realtime_product_search; for Walmart/eBay/AliExpress/Costco/Wayfair/Home Depot/Lowe's use their dedicated tools.",
   },
   realtime_product_search: {
     summary:
@@ -154,11 +154,22 @@ export const descriptions: Record<string, ApiHint> = {
   real_time_ebay_data: {
     summary: "eBay product search, products by category, product details and seller feedback across eBay domains.",
   },
+  realtime_aliexpress_data: {
+    summary:
+      "AliExpress product data: search with price, shipping and Choice filters, product details, reviews, shipping options to a country, image search, store details and store products, category tree, hot products and SuperDeals.",
+    whenToUse: "Use for AliExpress specifically. For Amazon use realtime_amazon_data; for cross-retailer comparison use realtime_product_search.",
+  },
   realtime_costco_data: {
     summary: "Costco product search and product details.",
   },
   realtime_homedepot_data: {
     summary: "Home Depot product search, products by category, product details, item lookup by SKU or model number, and product reviews.",
+    whenToUse: "Use for Home Depot specifically. For Lowe's use realtime_lowes_data.",
+  },
+  realtime_lowes_data: {
+    summary:
+      "Lowe's product data: search, products by category, product details, item lookup by item number, model number or UPC, product reviews, and a store locator by US ZIP code. Prices, stock and pickup are per Lowe's store.",
+    whenToUse: "Use for Lowe's specifically. For Home Depot use realtime_homedepot_data.",
   },
   real_time_wayfair_data: {
     summary: "Wayfair product search, product details and reviews (furniture and home goods).",

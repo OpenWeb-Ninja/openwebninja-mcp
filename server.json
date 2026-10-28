@@ -1,19 +1,19 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.OpenWeb-Ninja/openwebninja-mcp",
-  "description": "Official MCP server for OpenWeb Ninja APIs - 50 real-time web data and SERP APIs as MCP tools",
+  "description": "Official MCP server for OpenWeb Ninja APIs - 52 real-time web data and SERP APIs as MCP tools",
   "repository": {
     "url": "https://github.com/OpenWeb-Ninja/openwebninja-mcp",
     "source": "github"
   },
   "websiteUrl": "https://www.openwebninja.com",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@openwebninja/mcp-server",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "transport": {
         "type": "stdio"
       },

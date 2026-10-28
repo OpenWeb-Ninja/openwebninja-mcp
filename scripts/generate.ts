@@ -20,9 +20,11 @@ const OUT = path.join(OUT_DIR, "manifest.ts");
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch"];
 const DEFAULT_HOST = "https://api.openwebninja.com";
 
-// Superseded v1 specs: realtime_product_search.yaml (paths suffixed `-v2`) and
-// realtime_web_search.yaml. Their v2 surface lives in the `-v2.yaml` file, which takes
-// the same tool id (see toolId), so we ship v2 only.
+// Superseded v1 specs: realtime_product_search.yaml (paths suffixed `-v2`),
+// realtime_web_search.yaml and waze.yaml (v1 /alerts-and-jams; v2 splits it into /alerts
+// and /jams on the same /waze base path). Their v2 surface lives in the `-v2.yaml` file,
+// which takes the same tool id (see toolId) and is the docs' "v2 (current)", so we ship
+// v2 only.
 //
 // Bundle products (e-commerce / real-estate / jobs / SERP / AI answers / local & maps)
 // are intentionally excluded: they only re-expose endpoints already covered by the
@@ -31,9 +33,13 @@ const DEFAULT_HOST = "https://api.openwebninja.com";
 //
 // company_data.yaml is published to the same S3 prefix by another pipeline but is not
 // a product on the portal, so it gets no tool.
+//
+// realtime_similarweb_data.yaml: own-x publishes the spec, but the product is hidden on the
+// portal until launch (catalog status "hidden"). Remove it from this list once it is live.
 const SKIP_FILES = new Set([
   "realtime_product_search.yaml",
   "realtime_web_search.yaml",
+  "waze.yaml",
   "realtime_ecommerce_data.yaml",
   "realtime_real_estate_data.yaml",
   "realtime_jobs_data.yaml",
@@ -42,6 +48,7 @@ const SKIP_FILES = new Set([
   "ai_answers.yaml",
   "realtime_local_and_maps_data.yaml",
   "company_data.yaml",
+  "realtime_similarweb_data.yaml",
 ]);
 
 const warnings: string[] = [];
