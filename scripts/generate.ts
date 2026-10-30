@@ -33,9 +33,7 @@ const DEFAULT_HOST = "https://api.openwebninja.com";
 //
 // company_data.yaml is published to the same S3 prefix by another pipeline but is not
 // a product on the portal, so it gets no tool.
-//
-// realtime_similarweb_data.yaml: own-x publishes the spec, but the product is hidden on the
-// portal until launch (catalog status "hidden"). Remove it from this list once it is live.
+
 const SKIP_FILES = new Set([
   "realtime_product_search.yaml",
   "realtime_web_search.yaml",
@@ -48,7 +46,6 @@ const SKIP_FILES = new Set([
   "ai_answers.yaml",
   "realtime_local_and_maps_data.yaml",
   "company_data.yaml",
-  "realtime_similarweb_data.yaml",
 ]);
 
 const warnings: string[] = [];

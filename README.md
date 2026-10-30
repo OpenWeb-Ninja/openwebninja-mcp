@@ -2,7 +2,7 @@
 
 Official [Model Context Protocol](https://modelcontextprotocol.io) server for [OpenWeb Ninja](https://www.openwebninja.com) APIs. Gives any MCP-compatible AI agent (Claude, Cursor, Cline, and others) real-time access to web search, local business data, jobs, e-commerce, real estate, finance, news, and more, through a single connection.
 
-One tool per API product (52 tools), each exposing that API's operations, plus a `subscribe` tool for adding an API's free tier on demand — 53 tools in total. Schemas are generated directly from OpenWeb Ninja's OpenAPI specs, so the server always matches the live APIs.
+One tool per API product (53 tools), each exposing that API's operations, plus a `subscribe` tool for adding an API's free tier on demand — 54 tools in total. Schemas are generated directly from OpenWeb Ninja's OpenAPI specs, so the server always matches the live APIs.
 
 ## Setup
 
@@ -83,7 +83,7 @@ Arguments are validated and type-coerced before the request is sent, and respons
 | `OPENWEBNINJA_API_KEY` | yes | Your OpenWeb Ninja API key (sent as `x-api-key`). |
 | `OPENWEBNINJA_BASE_URL` | no | Override the API host (defaults to `https://api.openwebninja.com`). For staging/testing. |
 
-## Available tools (53)
+## Available tools (54)
 
 **Search & discovery:** `realtime_web_search`, `realtime_bing_search_data`, `realtime_news_data`, `real_time_news_search`, `realtime_forums_search`, `web_search_autocomplete`, `realtime_image_search`, `reverse_image_search`, `realtime_lens_data`, `real_time_video_search`, `realtime_shorts_search`, `ai_overviews`, `google_ai_mode`, `social_links_search`
 
@@ -97,7 +97,7 @@ Arguments are validated and type-coerced before the request is sent, and respons
 
 **Finance & events:** `realtime_finance_data`, `realtime_events_data`
 
-**Contact & enrichment:** `website_contacts_scraper`, `email_search`
+**Contact & enrichment:** `website_contacts_scraper`, `email_search`, `realtime_similarweb_data`
 
 **Utility:** `web_unblocker`
 

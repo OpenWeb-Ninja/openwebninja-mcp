@@ -209,6 +209,11 @@ export const descriptions: Record<string, ApiHint> = {
     summary: "Find email addresses for a query within a given email domain (up to 5,000 results).",
     whenToUse: "Use to discover emails by query + domain. To scrape contacts from a known website use website_contacts_scraper.",
   },
+  realtime_similarweb_data: {
+    summary:
+      "Similarweb website traffic profile by domain: estimated monthly visits and change, global, country and category ranks, engagement (visit duration, pages per visit, bounce rate), site category and description, and company info. Figures are monthly; period_start and period_end give the month.",
+    whenToUse: "Use for a website's traffic, rank and engagement estimates. To scrape a site's contacts use website_contacts_scraper.",
+  },
 
   // Infra / utility
   web_unblocker: {
