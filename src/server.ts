@@ -89,7 +89,7 @@ const SUBSCRIBE_TOOL = {
 
 export function createServer(): Server {
   const server = new Server(
-    { name: "openwebninja", version: "0.5.0" },
+    { name: "openwebninja", version: "0.5.1" },
     { capabilities: { tools: {} } }
   );
 

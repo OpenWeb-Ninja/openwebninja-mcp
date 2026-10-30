@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "openwebninja-mcp",
   "display_name": "OpenWeb Ninja MCP",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Official MCP server for OpenWeb Ninja: 53 real-time web data and SERP APIs (Google Maps, Amazon, jobs, Zillow, Trustpilot, web search, news, finance) exposed as MCP tools.",
   "author": { "name": "OpenWeb Ninja" },
   "homepage": "https://www.openwebninja.com",
