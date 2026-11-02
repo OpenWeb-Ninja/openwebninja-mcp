@@ -33,6 +33,9 @@ const DEFAULT_HOST = "https://api.openwebninja.com";
 //
 // company_data.yaml is published to the same S3 prefix by another pipeline but is not
 // a product on the portal, so it gets no tool.
+//
+// realtime_bing_jobs_data.yaml stays published for its hidden portal page, but the API
+// is off: bing.com/jobs has returned 404 in every market since 2026-10-27 (OPE-1236).
 
 const SKIP_FILES = new Set([
   "realtime_product_search.yaml",
@@ -46,6 +49,7 @@ const SKIP_FILES = new Set([
   "ai_answers.yaml",
   "realtime_local_and_maps_data.yaml",
   "company_data.yaml",
+  "realtime_bing_jobs_data.yaml",
 ]);
 
 const warnings: string[] = [];

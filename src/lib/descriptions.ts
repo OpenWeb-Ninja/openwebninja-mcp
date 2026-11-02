@@ -108,7 +108,7 @@ export const descriptions: Record<string, ApiHint> = {
     summary:
       "Job search aggregated from Google for Jobs (LinkedIn, Indeed, Glassdoor and more): search jobs, job details, and estimated salaries.",
     whenToUse:
-      "Use to find job postings across all job sites. For one job site use realtime_linkedin_data, realtime_indeed_data, realtime_ziprecruiter_data, realtime_monster_data or realtime_bing_jobs_data. For salary data only use job_salary_data; for company reviews/ratings use realtime_glassdoor_data.",
+      "Use to find job postings across all job sites. For one job site use realtime_linkedin_data, realtime_indeed_data, realtime_ziprecruiter_data or realtime_monster_data. For salary data only use job_salary_data; for company reviews/ratings use realtime_glassdoor_data.",
   },
   realtime_linkedin_data: {
     summary: "LinkedIn job postings: job search with filters, every open job at one or more companies, and full job details.",
@@ -125,10 +125,6 @@ export const descriptions: Record<string, ApiHint> = {
   realtime_monster_data: {
     summary: "Monster jobs: job search with filters, full job details, and every open job at one or more employers.",
     whenToUse: "Use for Monster jobs specifically. For jobs across all sites use jsearch.",
-  },
-  realtime_bing_jobs_data: {
-    summary: "Bing Jobs search across public job sites (LinkedIn, ZipRecruiter, Monster and others), plus full job details.",
-    whenToUse: "Use for Bing's jobs vertical. For Google for Jobs results use jsearch.",
   },
   job_salary_data: {
     summary: "Estimated salary ranges for a job title and location, and company-specific job salaries.",
