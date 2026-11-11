@@ -111,7 +111,7 @@ export const descriptions: Record<string, ApiHint> = {
       "Use to find job postings across all job sites. For one job site use realtime_linkedin_data, realtime_indeed_data, realtime_ziprecruiter_data or realtime_monster_data. For salary data only use job_salary_data; for company reviews/ratings use realtime_glassdoor_data.",
   },
   realtime_linkedin_data: {
-    summary: "LinkedIn job postings: job search with filters, every open job at one or more companies, and full job details.",
+    summary: "LinkedIn job postings: job search with filters (up to 10 job titles in one query combined with OR, each title billed per page), every open job at one or more companies, and full job details.",
     whenToUse: "Use for LinkedIn jobs specifically. For jobs across all sites use jsearch.",
   },
   realtime_indeed_data: {
