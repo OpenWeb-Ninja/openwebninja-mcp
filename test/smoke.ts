@@ -6,6 +6,7 @@
  */
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import manifest from "../src/generated/manifest.js";
 
 const env: Record<string, string> = {};
 for (const [k, v] of Object.entries(process.env)) if (typeof v === "string") env[k] = v;
@@ -29,7 +30,9 @@ async function main() {
 
   // 1. tools/list
   const list = await client.listTools();
-  check("lists 42 tools", list.tools.length === 42, `got ${list.tools.length}`);
+  // One tool per API in the generated manifest, plus "subscribe".
+  const expectedTools = manifest.apis.length + 1;
+  check(`lists ${expectedTools} tools`, list.tools.length === expectedTools, `got ${list.tools.length}`);
   const names = list.tools.map((t) => t.name);
   check(
     "key tools present",
@@ -46,13 +49,13 @@ async function main() {
   check("unknown operation rejected", (r1 as any).isError === true, textOf(r1).slice(0, 80));
 
   // 3. missing required arg (query) -> validation error
-  const r2 = await client.callTool({ name: "jsearch", arguments: { operation: "search", args: {} } });
+  const r2 = await client.callTool({ name: "jsearch", arguments: { operation: "search_v2", args: {} } });
   check("missing required arg rejected", (r2 as any).isError === true, textOf(r2).slice(0, 100));
 
   // 4. valid args -> reaches upstream; with dummy key expect an auth/upstream error (proves request build)
   const r3 = await client.callTool({
     name: "jsearch",
-    arguments: { operation: "search", args: { query: "site reliability engineer remote" } },
+    arguments: { operation: "search_v2", args: { query: "site reliability engineer remote" } },
   });
   const t3 = textOf(r3);
   const reachedUpstream = /OWN API \d{3}|Network error/.test(t3);

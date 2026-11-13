@@ -31,8 +31,10 @@ const DEFAULT_HOST = "https://api.openwebninja.com";
 // individual API tools, so shipping them would be redundant and would muddy tool
 // selection (decision: 2026-06-22 sync).
 //
-// company_data.yaml is published to the same S3 prefix by another pipeline but is not
-// a product on the portal, so it gets no tool.
+// company_data.yaml and linkedin_companies_data.yaml are published to the same S3 prefix
+// by another pipeline (data-ocean) but are not products on the portal, so they get no
+// tool. linkedin_companies_data.yaml's base path (/linkedin-companies-database) has no
+// route on the API gateway yet (2026-11-13).
 //
 // realtime_bing_jobs_data.yaml stays published for its hidden portal page, but the API
 // is off: bing.com/jobs has returned 404 in every market since 2026-10-27 (OPE-1236).
@@ -49,6 +51,7 @@ const SKIP_FILES = new Set([
   "ai_answers.yaml",
   "realtime_local_and_maps_data.yaml",
   "company_data.yaml",
+  "linkedin_companies_data.yaml",
   "realtime_bing_jobs_data.yaml",
 ]);
 
