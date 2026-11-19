@@ -1,5 +1,7 @@
 # OpenWeb Ninja MCP Server
 
+> **This is a fork of [OpenWeb-Ninja/openwebninja-mcp](https://github.com/OpenWeb-Ninja/openwebninja-mcp).** It adds a Streamable HTTP transport and a Docker image published to `ghcr.io/romka-labs/openwebninja-mcp`.
+
 Official [Model Context Protocol](https://modelcontextprotocol.io) server for [OpenWeb Ninja](https://www.openwebninja.com) APIs. Gives any MCP-compatible AI agent (Claude, Cursor, Cline, and others) real-time access to web search, local business data, jobs, e-commerce, real estate, finance, news, and more, through a single connection.
 
 One tool per API product (52 tools), each exposing that API's operations, plus a `subscribe` tool for adding an API's free tier on demand — 53 tools in total. Schemas are generated directly from OpenWeb Ninja's OpenAPI specs, so the server always matches the live APIs.
