@@ -58,6 +58,33 @@ Then point your MCP client at the built entry:
 }
 ```
 
+### Docker (remote HTTP server)
+
+The image runs the server over [Streamable HTTP](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) instead of stdio, so clients can connect over the network:
+
+```bash
+docker build -t openwebninja-mcp .
+docker run -d --name openwebninja-mcp --restart unless-stopped \
+  -e OPENWEBNINJA_API_KEY=your-api-key \
+  -e MCP_AUTH_TOKEN=a-long-random-secret \
+  -p 3000:3000 openwebninja-mcp
+```
+
+- MCP endpoint: `http://<host>:3000/mcp`; health check: `http://<host>:3000/healthz`.
+- Set `MCP_AUTH_TOKEN`. Without it, anyone who can reach the port can spend your API key. Clients then send `Authorization: Bearer <token>`.
+- Put it behind a TLS-terminating reverse proxy (nginx, Caddy, Traefik) when exposing it beyond a private network.
+- The server is stateless, so you can run several replicas behind a load balancer.
+
+Connect from Claude Code:
+
+```bash
+claude mcp add --transport http openwebninja http://<host>:3000/mcp --header "Authorization: Bearer a-long-random-secret"
+```
+
+To try it locally on Windows, `./run-local.ps1` builds the image and runs it with the variables from `.env` on `http://localhost:3000/mcp`.
+
+Outside Docker, the same mode is `MCP_TRANSPORT=http node dist/index.js` (or `node dist/index.js --http`).
+
 ## How the tools work
 
 Each tool maps to one OpenWeb Ninja API and takes two inputs:
@@ -82,6 +109,9 @@ Arguments are validated and type-coerced before the request is sent, and respons
 | --- | --- | --- |
 | `OPENWEBNINJA_API_KEY` | yes | Your OpenWeb Ninja API key (sent as `x-api-key`). |
 | `OPENWEBNINJA_BASE_URL` | no | Override the API host (defaults to `https://api.openwebninja.com`). For staging/testing. |
+| `MCP_TRANSPORT` | no | `stdio` (default) or `http`. The Docker image sets `http`. |
+| `PORT` / `HOST` | no | HTTP mode listen port and address (default `3000` / `0.0.0.0`). |
+| `MCP_AUTH_TOKEN` | no (recommended for HTTP) | If set, HTTP requests to `/mcp` must send `Authorization: Bearer <token>`. |
 
 ## Available tools (54)
 

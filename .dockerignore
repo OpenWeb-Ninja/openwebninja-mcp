@@ -1,0 +1,23 @@
+# Secrets: never send to the build context
+.env
+.env.*
+
+# Build output and deps are produced inside the image
+node_modules/
+dist/
+
+# Not needed in the image
+.git/
+.gitignore
+.mcp.json
+.mcpbignore
+*.mcpb
+*.log
+openapi-cache/
+eval/
+test/
+scripts/
+Dockerfile
+.dockerignore
+run-local.ps1
+*.md
